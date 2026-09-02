@@ -13,32 +13,20 @@ public class Product_of_array_except_self {
         for(int i=0; i<n; i++){
             nums[i]= sc.nextInt();
         }
-        int product=1, count=0;
-        for(int i=0; i<nums.length; i++){
-            if(nums[i]==0){
-                count++;
-            }
-            else
-            product*=nums[i];
+        int answer[]= new int[n];
+        int prefix[]= new int[n];
+        int suffix[]= new int[n];
+        prefix[0]= 1;
+        for(int i=1; i<n; i++){
+            prefix[i]= prefix[i-1]*nums[i-1];
         }
-
-        int result=0;
-        for(int i=0; i<nums.length; i++){
-            if(count==0){
-                nums[i]= product/nums[i];
-            }
-            else if(count==1){
-                if(nums[i]==0){
-                    nums[i]= product;
-                }
-                else{
-                    nums[i]=0;
-                }
-            }
-            else if(count>1){
-                nums[i]=0;
-            }
+        suffix[n-1]= 1;
+        for(int i=n-2; i>=0; i--){
+            suffix[i]= suffix[i+1]*nums[i+1];
         }
-        System.out.println(Arrays.toString(nums));
+        for(int i=0; i<n; i++){
+            answer[i]= prefix[i]*suffix[i];
+        }
+        System.out.println(Arrays.toString(answer));
     }
 }
