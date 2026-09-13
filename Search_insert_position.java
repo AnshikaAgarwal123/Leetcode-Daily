@@ -7,13 +7,21 @@ public class Search_insert_position{
         for(int i=0; i<n; i++){
             nums[i]= sc.nextInt();
         }     
-        int target= sc.nextInt(); 
-        int index=0;
-        for(int i=0; i<nums.length; i++){
-            if(nums[i]<target){
-                index=i+1;
+        int target= sc.nextInt();
+        int start=0, end= nums.length-1;
+        while(start<=end){
+            int mid= start+ (end-start)/2;
+            if(nums[mid]==target){
+                System.out.println(mid);
+                return;
+            }
+            else if(nums[mid]>target){
+                end= mid-1;
+            }
+            else{
+                start= mid+1;
             }
         }
-        System.out.println(index);
+        System.out.println(start);
     }
 }
