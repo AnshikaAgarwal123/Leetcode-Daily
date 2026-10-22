@@ -15,6 +15,7 @@ public class Find_peak_element {
                 index= i;
             }
         }
+        
         System.out.println(index);
     }
 }
